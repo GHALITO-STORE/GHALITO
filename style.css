@@ -578,3 +578,44 @@ border:1px solid #333;
 color:#D4AF37;
 
 }
+/* =======================
+   FILTRES
+======================= */
+
+.filters{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+padding:30px;
+
+flex-wrap:wrap;
+
+}
+
+.filters select{
+
+padding:12px 20px;
+
+font-size:16px;
+
+border-radius:8px;
+
+border:1px solid #D4AF37;
+
+background:#1b1b1b;
+
+color:white;
+
+}
+
+.filters select:focus{
+
+outline:none;
+
+border-color:#FFD700;
+
+}
