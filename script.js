@@ -322,3 +322,34 @@ slides[currentSlide].classList.add("active");
 },4000);
 
 }
+//------------------------------------
+// Bouton Retour en haut
+//------------------------------------
+
+const topButton=document.getElementById("topButton");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+
+topButton.style.display="block";
+
+}else{
+
+topButton.style.display="none";
+
+}
+
+});
+
+topButton?.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
