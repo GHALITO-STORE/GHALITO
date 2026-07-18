@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Panier</title>
-
+<title>GHALITO | Panier</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -36,44 +29,29 @@
 
 <h2>Votre panier</h2>
 
-<div id="cart-items"></div>
+<div id="cart"></div>
 
-<h3 id="total"></h3>
+<div class="cart-footer">
 
-</section>
+<h2 id="total"></h2>
 
-<script>
+<button id="clear-cart">
 
-let panier = JSON.parse(localStorage.getItem("ghalito-cart")) || [];
+Vider le panier
 
-let html = "";
+</button>
 
-let total = 0;
+<button id="checkout">
 
-panier.forEach(p => {
+Commander
 
-total += p.prix;
-
-html += `
-
-<div class="cart-item">
-
-<h3>${p.nom}</h3>
-
-<p>${p.prix.toFixed(2)} €</p>
+</button>
 
 </div>
 
-`;
+</section>
 
-});
-
-document.getElementById("cart-items").innerHTML = html;
-
-document.getElementById("total").innerHTML =
-"Total : " + total.toFixed(2) + " €";
-
-</script>
+<script src="script.js"></script>
 
 </body>
 
