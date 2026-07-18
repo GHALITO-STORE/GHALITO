@@ -914,3 +914,86 @@ font-weight:bold;
 border-radius:8px;
 
 }
+/*========================
+TOP BAR
+========================*/
+
+.topbar{
+
+background:#000;
+
+color:#D4AF37;
+
+padding:10px 40px;
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:14px;
+
+}
+
+/*========================
+HEADER V2
+========================*/
+
+header{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+background:#111;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px 50px;
+
+box-shadow:0 2px 15px rgba(0,0,0,.5);
+
+}
+
+.logo{
+
+font-size:34px;
+
+font-weight:bold;
+
+letter-spacing:4px;
+
+color:#D4AF37;
+
+}
+
+nav{
+
+display:flex;
+
+gap:30px;
+
+align-items:center;
+
+}
+
+nav a{
+
+color:white;
+
+font-size:17px;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#D4AF37;
+
+}
