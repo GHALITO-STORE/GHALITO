@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GHALITO | Boutique</title>
 
 <link rel="stylesheet" href="style.css">
@@ -19,9 +23,11 @@
 
 <a href="index.html">Accueil</a>
 
-<a href="boutique.html" class="active">Boutique</a>
+<a href="boutique.html">Boutique</a>
 
-<a href="contact.html">Contact</a>
+<a href="panier.html">
+🛒 <span id="cart-count">0</span>
+</a>
 
 </nav>
 
@@ -31,53 +37,99 @@
 
 <h2>Notre Collection</h2>
 
-<p>Choisissez votre style.</p>
+<input
+type="text"
+id="search"
+placeholder="Rechercher un produit...">
 
 </section>
 
-<section class="products">
+<section class="products" id="products">
 
 <div class="card">
 
-<img src="images/tiger.webp" alt="Tiger">
+<img src="images/tiger.webp">
 
-<button
-class="add-cart"
+<h3>T-Shirt Tiger</h3>
+
+<p class="price">29.99 €</p>
+
+<button class="add-cart"
+
 data-name="T-Shirt Tiger"
+
 data-price="29.99">
 
 Ajouter au panier
 
 </button>
 
-<button
-class="add-cart"
+</div>
+
+<div class="card">
+
+<img src="images/tiger.webp">
+
+<h3>Hoodie Tiger</h3>
+
+<p class="price">49.99 €</p>
+
+<button class="add-cart"
+
 data-name="Hoodie Tiger"
+
 data-price="49.99">
 
 Ajouter au panier
 
-<button
-class="add-cart"
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="images/tiger.webp">
+
+<h3>Mug Tiger</h3>
+
+<p class="price">19.99 €</p>
+
+<button class="add-cart"
+
 data-name="Mug Tiger"
+
 data-price="19.99">
 
 Ajouter au panier
 
 </button>
 
-<button
-class="add-cart"
+</div>
+
+<div class="card">
+
+<img src="images/tiger.webp">
+
+<h3>Casquette Tiger</h3>
+
+<p class="price">24.99 €</p>
+
+<button class="add-cart"
+
 data-name="Casquette Tiger"
+
 data-price="24.99">
 
 Ajouter au panier
 
 </button>
 
+</div>
+
 </section>
 
 <script src="script.js"></script>
 
 </body>
-</html><h1>Boutique en construction</h1>
+
+</html>
