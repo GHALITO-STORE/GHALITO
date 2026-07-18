@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Galito — Random Joke Generator</title>
+  <style>
+    body { font-family: system-ui, Arial; max-width:720px; margin:40px auto; padding:0 16px; color:#111; }
+    .card { border:1px solid #eee; padding:18px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    button { background:#0b79d0; color:white; border:0; padding:10px 14px; border-radius:6px; cursor:pointer; }
+    button:disabled { opacity:0.6; cursor:not-allowed; }
+    .meta { margin-top:8px; color:#666; font-size:14px; }
+    pre { white-space:pre-wrap; font-family:inherit; font-size:16px; }
+    label { display:inline-flex; align-items:center; gap:8px; margin-right:12px; }
+  </style>
+</head>
+<body>
+  <h1>Galito — Random Joke Generator</h1>
+
+  <div class="card">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button id="newJokeBtn">Get a joke</button>
+
+      <label>
+        <input type="checkbox" id="nsfw" />
+        Allow NSFW
+      </label>
+      <label>
+        <input type="checkbox" id="religion" />
+        Allow Religion
+      </label>
+      <label>
+        <input type="checkbox" id="political" />
+        Allow Political
+      </label>
+
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+      </select>
+    </div>
+
+    <div class="meta" id="status">Click "Get a joke" to start.</div>
+
+    <div style="margin-top:16px">
+      <pre id="joke" aria-live="polite"></pre>
+    </div>
+  </div>
+
+  <script>
+    // Uses JokeAPI: https://v2.jokeapi.dev
+    const btn = document.getElementById('newJokeBtn');
+    const jokeEl = document.getElementById('joke');
+    const statusEl = document.getElementById('status');
+
+    async function fetchJoke() {
+      btn.disabled = true;
+      jokeEl.textContent = '';
+      statusEl.textContent = 'Loading...';
+
+      // Build blacklist based on checkboxes
+      const blacklistFlags = [];
+      if (!document.getElementById('nsfw').checked) blacklistFlags.push('nsfw');
+      if (!document.getElementById('religion').checked) blacklistFlags.push('religion');
+      if (!document.getElementById('political').checked) blacklistFlags.push('political');
+
+      const lang = document.getElementById('lang').value || 'en';
+
+      const params = new URLSearchParams();
+      if (blacklistFlags.length) params.set('blacklistFlags', blacklistFlags.join(','));
+      params.set('lang', lang);
+
+      // Request any category / type
+      const url = `https://v2.jokeapi.dev/joke/Any?${params.toString()}`;
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Network response not OK: ' + res.status);
+        const data = await res.json();
+
+        if (data.error) {
+          throw new Error('API error: ' + (data.message || JSON.stringify(data)));
+        }
+
+        // JokeAPI returns either single or two-part joke
+        let text;
+        if (data.type === 'single') {
+          text = data.joke;
+        } else if (data.type === 'twopart') {
+          text = data.setup + '\n\n' + data.delivery;
+        } else {
+          text = JSON.stringify(data, null, 2);
+        }
+
+        jokeEl.textContent = text;
+        statusEl.textContent = `Category: ${data.category}  •  ID: ${data.id}`;
+      } catch (err) {
+        jokeEl.textContent = '';
+        statusEl.textContent = 'Failed to fetch joke: ' + err.message;
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    btn.addEventListener('click', fetchJoke);
+
+    // Optionally fetch one on load
+    // fetchJoke();
+  </script>
+</body>
+</html>
