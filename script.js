@@ -117,3 +117,48 @@ alert("Paiement bientôt disponible.");
 });
 
 afficherPanier();
+//------------------------------------
+// RECHERCHE PRODUITS
+//------------------------------------
+
+const search = document.getElementById("search");
+
+if(search){
+
+search.addEventListener("keyup", ()=>{
+
+let value = search.value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(card=>{
+
+let titre = card.querySelector("h3").innerText.toLowerCase();
+
+card.style.display =
+
+titre.includes(value)
+
+? "block"
+
+: "none";
+
+});
+
+});
+
+}
+
+//------------------------------------
+// COMPTEUR PANIER
+//------------------------------------
+
+const compteur=document.getElementById("cart-count");
+
+if(compteur){
+
+let panier=
+
+JSON.parse(localStorage.getItem("ghalito-cart"))||[];
+
+compteur.innerHTML=panier.length;
+
+}
