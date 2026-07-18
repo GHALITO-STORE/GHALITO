@@ -254,3 +254,44 @@ Number(btn.dataset.price)
 });
 
 }
+//---------------------------------
+// FILTRE
+//---------------------------------
+
+const categoryFilter=document.getElementById("categoryFilter");
+
+const priceSort=document.getElementById("priceSort");
+
+function updateProducts(){
+
+let filtered=[...allProducts];
+
+if(categoryFilter.value!="all"){
+
+filtered=filtered.filter(
+
+p=>p.category===categoryFilter.value
+
+);
+
+}
+
+if(priceSort.value=="low"){
+
+filtered.sort((a,b)=>a.price-b.price);
+
+}
+
+if(priceSort.value=="high"){
+
+filtered.sort((a,b)=>b.price-a.price);
+
+}
+
+displayProducts(filtered);
+
+}
+
+categoryFilter?.addEventListener("change",updateProducts);
+
+priceSort?.addEventListener("change",updateProducts);
