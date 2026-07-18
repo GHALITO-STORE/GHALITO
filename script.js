@@ -180,4 +180,60 @@ el.innerHTML="♡";
 
 }
 
+//------------------------------------
+// Chargement des produits
+//------------------------------------
+
+const productsContainer = document.getElementById("products");
+
+if (productsContainer) {
+
+    fetch("products.json")
+        .then(response => response.json())
+        .then(products => {
+
+            let html = "";
+
+            products.forEach(product => {
+
+                html += `
+                <div class="card">
+
+                    <div class="favorite" onclick="toggleFavorite(this)">♡</div>
+
+                    <img src="${product.image}" alt="${product.name}">
+
+                    <h3>${product.name}</h3>
+
+                    <p class="price">${product.price.toFixed(2)} €</p>
+
+                    <button
+                        class="add-cart"
+                        data-name="${product.name}"
+                        data-price="${product.price}">
+                        Ajouter au panier
+                    </button>
+
+                </div>
+                `;
+
+            });
+
+            productsContainer.innerHTML = html;
+
+            document.querySelectorAll(".add-cart").forEach(btn => {
+
+                btn.addEventListener("click", () => {
+
+                    ajouterProduit(
+                        btn.dataset.name,
+                        Number(btn.dataset.price)
+                    );
+
+                });
+
+            });
+
+        });
+
 }
