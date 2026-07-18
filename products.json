@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "T-Shirt Tiger",
+    "price": 29.99,
+    "category": "T-Shirts",
+    "image": "images/tiger.webp"
+  },
+  {
+    "id": 2,
+    "name": "Hoodie Tiger",
+    "price": 49.99,
+    "category": "Hoodies",
+    "image": "images/tiger.webp"
+  },
+  {
+    "id": 3,
+    "name": "Mug Tiger",
+    "price": 19.99,
+    "category": "Mugs",
+    "image": "images/tiger.webp"
+  },
+  {
+    "id": 4,
+    "name": "Casquette Tiger",
+    "price": 24.99,
+    "category": "Casquettes",
+    "image": "images/tiger.webp"
+  }
+]
