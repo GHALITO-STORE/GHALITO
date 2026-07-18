@@ -1,1 +1,9 @@
-console.log('V8.1');
+document.querySelectorAll("button").forEach(button => {
+
+button.addEventListener("click", () => {
+
+alert("Produit ajouté au panier.");
+
+});
+
+});
