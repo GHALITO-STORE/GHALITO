@@ -295,3 +295,30 @@ displayProducts(filtered);
 categoryFilter?.addEventListener("change",updateProducts);
 
 priceSort?.addEventListener("change",updateProducts);
+//------------------------------------
+// Slider automatique
+//------------------------------------
+
+const slides=document.querySelectorAll(".slide");
+
+let currentSlide=0;
+
+if(slides.length){
+
+setInterval(()=>{
+
+slides[currentSlide].classList.remove("active");
+
+currentSlide++;
+
+if(currentSlide>=slides.length){
+
+currentSlide=0;
+
+}
+
+slides[currentSlide].classList.add("active");
+
+},4000);
+
+}
