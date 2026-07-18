@@ -188,52 +188,69 @@ const productsContainer = document.getElementById("products");
 
 if (productsContainer) {
 
-    fetch("products.json")
-        .then(response => response.json())
-        .then(products => {
+   let allProducts=[];
 
-            let html = "";
+fetch("products.json")
 
-            products.forEach(product => {
+.then(r=>r.json())
 
-                html += `
-                <div class="card">
+.then(products=>{
 
-                    <div class="favorite" onclick="toggleFavorite(this)">♡</div>
+allProducts=products;
 
-                    <img src="${product.image}" alt="${product.name}">
+displayProducts(products);
 
-                    <h3>${product.name}</h3>
+});
 
-                    <p class="price">${product.price.toFixed(2)} €</p>
+function displayProducts(products){
 
-                    <button
-                        class="add-cart"
-                        data-name="${product.name}"
-                        data-price="${product.price}">
-                        Ajouter au panier
-                    </button>
+let html="";
 
-                </div>
-                `;
+products.forEach(product=>{
 
-            });
+html+=`
 
-            productsContainer.innerHTML = html;
+<div class="card">
 
-            document.querySelectorAll(".add-cart").forEach(btn => {
+<div class="favorite" onclick="toggleFavorite(this)">♡</div>
 
-                btn.addEventListener("click", () => {
+<img src="${product.image}">
 
-                    ajouterProduit(
-                        btn.dataset.name,
-                        Number(btn.dataset.price)
-                    );
+<h3>${product.name}</h3>
 
-                });
+<p class="price">${product.price.toFixed(2)} €</p>
 
-            });
+<button
+class="add-cart"
+data-name="${product.name}"
+data-price="${product.price}">
 
-        });
+Ajouter au panier
+
+</button>
+
+</div>
+
+`;
+
+});
+
+productsContainer.innerHTML=html;
+
+document.querySelectorAll(".add-cart").forEach(btn=>{
+
+btn.onclick=()=>{
+
+ajouterProduit(
+
+btn.dataset.name,
+
+Number(btn.dataset.price)
+
+);
+
+};
+
+});
 
 }
