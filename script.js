@@ -162,3 +162,22 @@ JSON.parse(localStorage.getItem("ghalito-cart"))||[];
 compteur.innerHTML=panier.length;
 
 }
+//------------------------------------
+// FAVORIS
+//------------------------------------
+
+function toggleFavorite(el){
+
+el.classList.toggle("active");
+
+if(el.classList.contains("active")){
+
+el.innerHTML="❤";
+
+}else{
+
+el.innerHTML="♡";
+
+}
+
+}
